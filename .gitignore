@@ -5,3 +5,4 @@ __pycache__
 venv/
 new_venv/
 .vscode
+test.py

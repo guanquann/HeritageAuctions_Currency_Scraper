@@ -69,6 +69,10 @@ def scrape_website(output, currency, url_id):
                                  "Date": date_list,
                                  "Amount": sold_amount_list})
     df["Currency"] = currency
+    df.loc[df["Description"].str.contains("1918"), "Year"] = "1918"
+    df.loc[df["Description"].str.contains("1928"), "Year"] = "1928"
+    df.loc[df["Description"].str.contains("1934"), "Year"] = "1934"
+    df.loc[df["Description"].str.contains("1934A"), "Year"] = "1934A"
     df.to_csv(output, index=False)
 
 
