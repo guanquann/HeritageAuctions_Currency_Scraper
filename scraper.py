@@ -84,14 +84,14 @@ if __name__ == '__main__':
                         help='Export file name')
     parser.add_argument('--denominator',
                         default=500,
-                        choices=[500, 1000],
+                        choices=[100, 500, 1000],
                         type=int,
                         help='Denominator you wish to scrape')
     args = parser.parse_args()
 
     # keys: currency denominator; values: url id of website
     # e.g: https://currency.ha.com/c/search-results.zx?No=0&N=790+231+56+1958+1219
-    currency_mapping_dict = {500: 1219, 1000: 1218}
+    currency_mapping_dict = {100: 1220, 500: 1219, 1000: 1218}
     output_filename = args.output_filename
     denominator = args.denominator
     url = currency_mapping_dict[denominator]

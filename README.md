@@ -12,6 +12,7 @@ git clone https://github.com/spartan737/HeritageAuctions_Currency_Scraper.git
 pip install -r requirements.txt
 ```
 
+- Login into https://currency.ha.com/ first
 - Copy Requests and Cookies from website
 ![Copy requests and cookies](./documentation/img1.png)
 
@@ -23,7 +24,7 @@ pip install -r requirements.txt
 ### Run Script
 - Follow the parameters:
 ```
-python scraper.py --output_filename [output csv name] --denominator [500/1000]
+python scraper.py --output_filename [output csv name] --denominator [100/500/1000]
 ```
 
 - For example:
