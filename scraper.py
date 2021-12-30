@@ -68,11 +68,25 @@ def scrape_website(output, currency, url_id):
                                  "Lot": lot_list,
                                  "Date": date_list,
                                  "Amount": sold_amount_list})
+
     df["Currency"] = currency
+
+    # Find year of currency
     df.loc[df["Description"].str.contains("1918"), "Year"] = "1918"
     df.loc[df["Description"].str.contains("1928"), "Year"] = "1928"
     df.loc[df["Description"].str.contains("1934"), "Year"] = "1934"
     df.loc[df["Description"].str.contains("1934A"), "Year"] = "1934A"
+
+    df.loc[df["Description"].str.contains("PMG"), "Type"] = "PMG"
+    df.loc[df["Description"].str.contains("PCGS"), "Type"] = "PCGS"
+    df["Type"].fillna("Unknown", inplace=True)
+
+    df["Grade"] = df["Description"].apply(lambda x: " ".join(x.split()[-2:]))
+    df["Grade"] = df["Grade"].str.extract(r"(\d+)")
+    df["Grade"].fillna(99999, inplace=True)
+    df["Grade"] = df["Grade"].astype(int)
+    df["Grade"][df["Grade"] > 100] = "Unknown"
+
     df.to_csv(output, index=False)
 
 
